@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wordle Clone</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(5, 50px);
+            gap: 5px;
+            margin-bottom: 20px;
+        }
+        .cell {
+            width: 50px;
+            height: 50px;
+            border: 2px solid #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            text-transform: uppercase;
+        }
+        .correct {
+            background-color: green;
+            color: white;
+        }
+        .present {
+            background-color: gold;
+            color: white;
+        }
+        .absent {
+            background-color: gray;
+            color: white;
+        }
+        input[type="text"] {
+            text-transform: uppercase;
+            font-size: 18px;
+            padding: 5px;
+            width: 150px;
+            margin-bottom: 10px;
+        }
+        .back-link {
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="back-link">
+        <a href="resume.html">&larr; Back to Resume</a>
+    </div>
+    <h1>Wordle Clone</h1>
+    <div id="grid"></div>
+    <input type="text" id="guess" maxlength="5" placeholder="Enter guess" />
+    <button onclick="submitGuess()">Submit</button>
+
+    <script>
+        const words = ["GRAPE", "PLANT", "SHARE", "TRAIN", "CRANE", "FRUIT", "LIGHT", "BRAVE", "MIGHT", "SWEET"];
+        let answer = words[Math.floor(Math.random() * words.length)];
+        const maxGuesses = 6;
+        let currentGuess = 0;
+
+        const grid = document.getElementById("grid");
+
+        function initializeGrid() {
+            grid.innerHTML = "";
+            for (let i = 0; i < maxGuesses * 5; i++) {
+                const cell = document.createElement("div");
+                cell.className = "cell";
+                grid.appendChild(cell);
+            }
+        }
+
+        initializeGrid();
+
+        function submitGuess() {
+            const input = document.getElementById("guess");
+            const guess = input.value.toUpperCase();
+            if (guess.length !== 5 || currentGuess >= maxGuesses) return;
+
+            for (let i = 0; i < 5; i++) {
+                const cell = grid.children[currentGuess * 5 + i];
+                cell.textContent = guess[i];
+                if (guess[i] === answer[i]) {
+                    cell.classList.add("correct");
+                } else if (answer.includes(guess[i])) {
+                    cell.classList.add("present");
+                } else {
+                    cell.classList.add("absent");
+                }
+            }
+
+            currentGuess++;
+            input.value = "";
+
+            if (guess === answer) {
+                setTimeout(() => {
+                    alert("Congratulations! You guessed the word.");
+                    resetGame();
+                }, 100);
+            } else if (currentGuess === maxGuesses) {
+                setTimeout(() => {
+                    alert(`Game over! The word was ${answer}`);
+                    resetGame();
+                }, 100);
+            }
+        }
+
+        function resetGame() {
+            answer = words[Math.floor(Math.random() * words.length)];
+            currentGuess = 0;
+            initializeGrid();
+            document.getElementById("guess").value = "";
+        }
+    </script>
+</body>
+</html>

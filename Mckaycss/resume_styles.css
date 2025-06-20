@@ -1,0 +1,68 @@
+/* Custom Resume Styles */
+
+/* Base body styling */
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #fefbf6;
+    color: #333333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header styles */
+.header-title {
+    color: #2a2f45;
+    text-align: center;
+    padding-top: 20px;
+    font-family: 'Lora', serif;
+}
+
+/* Resume section headers */
+.resume-section h3 {
+    color: #1c3d5a;
+    border-bottom: 2px solid #d0d0d0;
+    padding-bottom: 0.5rem;
+    margin-top: 2rem;
+}
+
+/* Resume entries */
+.resume-entry {
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+    margin-bottom: 1.5rem;
+}
+
+.date-location {
+    color: #888888;
+    font-style: italic;
+    font-size: 0.9rem;
+}
+
+/* Div for video section */
+.video-section {
+    background-color: #eaf6f6;
+    padding: 2rem;
+    margin-top: 2rem;
+    text-align: center;
+    border-radius: 8px;
+}
+
+/* Div for footer */
+.footer-style {
+    background-color: #f0f0f0;
+    color: #555555;
+    padding: 1.5rem 0;
+    font-size: 0.85rem;
+    text-align: center;
+}
+
+/* Link color */
+a {
+    color: #1d4ed8;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
